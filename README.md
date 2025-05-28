@@ -1,24 +1,18 @@
-# README
+# To-Do List App 📝
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este é um aplicativo de lista de tarefas simples desenvolvido com **Ruby on Rails 5.2**. Ele permite que os usuários criem, editem, visualizem e excluam tarefas, com campos como descrição, data de entrega e status de conclusão.
 
-Things you may want to cover:
+## 📦 Tecnologias
 
-* Ruby version
+- Ruby 2.7.8
+- Rails 5.2.x
+- PostgreSQL
+- Bootstrap 4 (para estilos)
 
-* System dependencies
+## ⚙️ Setup do Projeto
 
-* Configuration
+### 1. Clone o repositório
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+git clone https://github.com/seu-usuario/to-do.git
+cd to-do
