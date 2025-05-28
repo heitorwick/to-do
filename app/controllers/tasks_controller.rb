@@ -19,40 +19,37 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-      if @task.save
-        redirect_to @task, notice: "Task was successfully created."
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @task.save
+      redirect_to tasks_path, notice: "Tarefa foi criada com sucesso."
+    else
+      flash.now[:alert] = @task.errors.full_messages.to_sentence
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-      if @task.update(task_params)
-        redirect_to @task, notice: "Task was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: "Tarefa foi atualizada com sucesso."
+    else
+      flash.now[:alert] = @task.errors.full_messages.to_sentence
+      render :edit
     end
   end
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy
-
-      redirect_to tasks_path, status: :see_other, notice: "Task was successfully destroyed."
-    end
+    redirect_to tasks_path, notice: "Tarefa foi excluída com sucesso."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit(:description, :due_date, :done)
-    end
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  def task_params
+    params.require(:task).permit(:description, :due_date, :done)
+  end
 end

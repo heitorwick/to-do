@@ -2,6 +2,9 @@
   "name": "to-do",
   "private": true,
   "dependencies": {
+    "bootstrap": "^5.3.6",
+    "jquery": "^3.7.1",
+    "popper.js": "^1.16.1",
     "postgresql": "^0.0.1"
   }
 }
