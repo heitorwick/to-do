@@ -1,0 +1,7 @@
+{
+  "name": "to-do",
+  "private": true,
+  "dependencies": {
+    "postgresql": "^0.0.1"
+  }
+}
