@@ -1,8 +1,5 @@
 # To-Do List - Aplicativo em Ruby on Rails
 
-![To-Do App Screenshot](https://i.imgur.com/r6jS2s6.png)
-_Sugestão: Troque o link acima por um screenshot seu. Você pode subir a imagem no próprio GitHub ou usar um serviço como o Imgur._
-
 ## 📖 Sobre o Projeto
 
 Este é um aplicativo web de lista de tarefas (To-Do) desenvolvido com Ruby on Rails. O projeto foi criado como uma forma de aplicar e aprofundar conhecimentos no framework, incluindo funcionalidades essenciais como autenticação de usuários, operações CRUD (Criar, Ler, Atualizar, Deletar) para tarefas e internacionalização para múltiplos idiomas.
