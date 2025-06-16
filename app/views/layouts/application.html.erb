@@ -7,18 +7,139 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: #f4f6fa;
+        min-height: 100vh;
+        font-family: 'Inter', Arial, sans-serif;
+        color: #222;
+      }
+      .navbar {
+        background: #fff !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border-radius: 0 0 12px 12px;
+        padding: 0.7rem 1.5rem;
+      }
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #2d3748 !important;
+      }
+      .container {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+        padding: 32px 24px;
+        margin-top: 32px;
+        margin-bottom: 32px;
+      }
+      h1 {
+        font-family: 'Inter', Arial, sans-serif;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1.5rem;
+      }
+      .btn-primary, .btn-warning, .btn-danger, .btn-secondary {
+        border-radius: 6px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        box-shadow: none;
+        border: none;
+        padding: 0.5rem 1.2rem;
+        transition: background 0.2s, color 0.2s;
+      }
+      .btn-primary {
+        background: #2563eb;
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #1d4ed8;
+        color: #fff;
+      }
+      .btn-warning {
+        background: #fbbf24;
+        color: #fff;
+      }
+      .btn-warning:hover {
+        background: #f59e42;
+        color: #fff;
+      }
+      .btn-danger {
+        background: #ef4444;
+        color: #fff;
+      }
+      .btn-danger:hover {
+        background: #dc2626;
+        color: #fff;
+      }
+      .table {
+        background: #f9fafb;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      }
+      .table th, .table td {
+        border: none;
+        color: #222;
+      }
+      .form-control, input, select {
+        background: #f4f6fa;
+        color: #222;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        padding: 0.4rem 0.8rem;
+      }
+      .alert-success {
+        background: #e0f2fe;
+        color: #2563eb;
+        border: none;
+      }
+      .alert-danger {
+        background: #fee2e2;
+        color: #b91c1c;
+        border: none;
+      }
+    </style>
   </head>
 
   <body>
-    <% flash.each do |type, message| %>
-      <div class="alert alert-<%= type == 'alert' ? 'danger' : 'success' %> alert-dismissible fade show" role="alert">
-        <%= message %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-light mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">To-Do List</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item"><span class="nav-link">Olá, <%= current_user.name || current_user.email %></span></li>
+              <li class="nav-item"><%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to 'Entrar', new_user_session_path, class: 'nav-link' %></li>
+              <li class="nav-item"><%= link_to 'Cadastrar', new_user_registration_path, class: 'nav-link' %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-    <% end %>
+    </nav>
 
-    <%= yield %>
+    <div class="container">
+      <% flash.each do |type, message| %>
+        <% next unless type.is_a?(String) || type.is_a?(Symbol) %>
+        <% cor = if type.to_s == 'alert' || message.to_s.downcase.include?('excluíd')
+          'danger'
+        else
+          'success'
+        end %>
+        <div class="alert alert-<%= cor %> alert-dismissible fade show mt-2" role="alert">
+          <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

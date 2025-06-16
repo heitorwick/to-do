@@ -1,0 +1,50 @@
+pt-BR:
+  devise:
+    sessions:
+      new:
+        title: "Entrar"
+        submit: "Entrar"
+        remember_me: "Lembrar-me"
+        forgot_password: "Esqueceu sua senha?"
+        sign_up: "Cadastrar"
+    registrations:
+      new:
+        title: "Cadastro"
+        submit: "Cadastrar"
+        email: "Email"
+        password: "Senha"
+        password_confirmation: "Confirmação de Senha"
+        forgot_password: "Esqueceu sua senha?"
+        sign_in: "Entrar"
+      edit:
+        title: "Editar Conta"
+        email: "Email"
+        password: "Nova Senha"
+        password_confirmation: "Confirmar Nova Senha"
+        current_password: "Senha Atual"
+        update: "Atualizar"
+        cancel_my_account: "Cancelar minha conta"
+        unhappy: "Infeliz?"
+        back: "Voltar"
+    passwords:
+      new:
+        title: "Esqueceu sua senha?"
+        send_reset_password_instructions: "Enviar instruções para redefinir senha"
+      edit:
+        title: "Alterar sua senha"
+        change_my_password: "Alterar minha senha"
+        new_password: "Nova Senha"
+        confirm_new_password: "Confirmar nova senha"
+    confirmations:
+      new:
+        title: "Reenviar instruções de confirmação"
+        resend_confirmation_instructions: "Reenviar instruções de confirmação"
+    shared:
+      links:
+        sign_in: "Entrar"
+        sign_up: "Cadastrar"
+        forgot_your_password: "Esqueceu sua senha?"
+        did_not_receive_confirmation_instructions: "Não recebeu as instruções de confirmação?"
+        did_not_receive_unlock_instructions: "Não recebeu as instruções de desbloqueio?"
+        resend_confirmation_instructions: "Reenviar instruções de confirmação"
+        resend_unlock_instructions: "Reenviar instruções de desbloqueio" 

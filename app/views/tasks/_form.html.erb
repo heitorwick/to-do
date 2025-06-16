@@ -1,20 +1,25 @@
 <%= form_with(model: task, local: true) do |form| %>
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :title, 'Título' %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, 'Descrição' %>
     <%= form.text_field :description %>
   </div>
 
   <div class="field">
-    <%= form.label :due_date %>
-    <%= form.date_select :due_date %>
+    <%= form.label :due_date, 'Data de Vencimento' %>
+    <%= form.date_field :due_date %>
   </div>
 
   <div class="field">
-    <%= form.label :done %>
+    <%= form.label :done, 'Concluída?' %>
     <%= form.check_box :done %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Salvar' %>
   </div>
 <% end %>
