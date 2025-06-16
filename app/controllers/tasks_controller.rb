@@ -1,14 +1,32 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: %i[ show edit update destroy ]
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
+
+    # Busca por título ou descrição
+    if params[:search].present?
+      search = "%#{params[:search]}%"
+      @tasks = @tasks.where("title ILIKE ? OR description ILIKE ?", search, search)
+    end
+
+    # Filtro de status
+    if params[:status] == 'pendente'
+      @tasks = @tasks.where(done: false)
+    elsif params[:status] == 'concluida'
+      @tasks = @tasks.where(done: true)
+    end
+
+    # Ordenação
+    order = %w[due_date created_at].include?(params[:order]) ? params[:order] : 'created_at'
+    @tasks = @tasks.order(order => :asc)
   end
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = current_user.tasks.build
   end
 
   # GET /tasks/1/edit
@@ -17,7 +35,7 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
 
     if @task.save
       redirect_to tasks_path, notice: "Tarefa foi criada com sucesso."
@@ -46,10 +64,10 @@ class TasksController < ApplicationController
   private
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def task_params
-    params.require(:task).permit(:description, :due_date, :done)
+    params.require(:task).permit(:title, :description, :due_date, :done)
   end
 end
